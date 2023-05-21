@@ -5,7 +5,7 @@ import java.util.List;
 public final class BinarySearch {
 
 	/**
-	 * Pesquisa binárias realizada com array de long
+	 * Pesquisa binária realizada com array de long
 	 * 
 	 * @author Nikolas Luiz Schmitt
 	 *
@@ -53,4 +53,48 @@ public final class BinarySearch {
 
         return -1;
     }
+	
+	/**
+	 * Pesquisa binária recursiva realizada com array de long
+	 * 
+	 * @author Nikolas Luiz Schmitt
+	 *
+	 */
+	public static int binarySearchRecursive(long[] array, long target, int low, int high) {
+        if (low > high) {
+            return -1;
+        }
+		
+        int mid = low + (high - low) / 2;
+
+        if (array[mid] == target) {
+            return mid;
+        } else if (array[mid] < target) {
+            return binarySearchRecursive(array, target, mid + 1, high);
+        } else {
+            return binarySearchRecursive(array, target, low, mid - 1);
+        }
+	}
+	
+	/**
+	 * Pesquisa binária recursiva realizada com uma lista de long
+	 * 
+	 * @author Nikolas Luiz Schmitt
+	 *
+	 */
+	public static int binarySearchRecursive(List<Long> list, long target, int low, int high) {
+        if (low > high) {
+            return -1;
+        }
+		
+        int mid = low + (high - low) / 2;
+
+        if (list.get(mid) == target) {
+            return mid;
+        } else if (list.get(mid) < target) {
+            return binarySearchRecursive(list, target, mid + 1, high);
+        } else {
+            return binarySearchRecursive(list, target, low, mid - 1);
+        }
+	}
 }
