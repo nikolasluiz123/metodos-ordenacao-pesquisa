@@ -6,36 +6,36 @@ import java.util.List;
 import br.com.reader.FileReaderHelper;
 import br.com.search.BinarySearch;
 
-public class TestePesquisaBinaria {
+public class TestePesquisaBinariaRecursiva {
 
 	public static void main(String[] args) {
 		System.out.println("----------------------------------------------------------");
-		System.out.println("Iniciando Processamento de Pesquisas Binarias");
+		System.out.println("Iniciando Processamento de Pesquisas Binarias Recursivas");
 		System.out.println();
 
-		binarySearchReadingWithScannerReturningArray();
+		binaryRecursiveSearchReadingWithScannerReturningArray();
 
 		System.out.println();
-		
-		binarySearchReadingWithBufferReturningArray();
+
+		binaryRecursiveSearchReadingWithBufferReturningArray();
 
 		System.out.println();
-		
-		binarySearchReadingWithBufferReturningList();
+
+		binaryRecursiveSearchReadingWithBufferReturningList();
 
 		System.out.println();
-		System.out.println("Finalizado Processamento de Pesquisas Binarias");
+		System.out.println("Finalizado Processamento de Pesquisas Binarias Recursivas");
 		System.out.println("----------------------------------------------------------");
 	}
 
 	/**
 	 * Exemplo usando BufferedReader para ler o arquivo e trabalhando com uma Lista
-	 * de Longs
+	 * de Longs pesquisando recursivamente
 	 * 
 	 * @author Nikolas Luiz Schmitt
 	 *
 	 */
-	private static void binarySearchReadingWithBufferReturningList() {
+	private static void binaryRecursiveSearchReadingWithBufferReturningList() {
 		try {
 			System.out.println("Iniciando o Processamento com BufferedReader e List");
 			System.out.println();
@@ -49,7 +49,7 @@ public class TestePesquisaBinaria {
 
 			List<Long> numbers = reader.readNumbersFromFileWithBufferReturngList();
 
-			int index = BinarySearch.binarySearch(numbers, searchValue);
+			int index = BinarySearch.binarySearchRecursive(numbers, searchValue, 0, numbers.size() - 1);
 
 			LocalDateTime dataFim = LocalDateTime.now();
 
@@ -58,20 +58,20 @@ public class TestePesquisaBinaria {
 			System.out.println(DurationUtils.getDurationOf(dataInicio, dataFim));
 			System.out.println();
 			System.out.println("Finalizado o Processamento com BufferedReader e List");
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	/**
 	 * Exemplo usando BufferedReader para ler o arquivo e trabalhando com array de
-	 * longs.
+	 * longs pesquisando recursivamente
 	 * 
 	 * @author Nikolas Luiz Schmitt
 	 *
 	 */
-	private static void binarySearchReadingWithBufferReturningArray() {
+	private static void binaryRecursiveSearchReadingWithBufferReturningArray() {
 		try {
 			System.out.println("Iniciando o Processamento com BufferedReader e Array");
 			System.out.println();
@@ -85,7 +85,7 @@ public class TestePesquisaBinaria {
 
 			long[] numbers = reader.readNumbersFromFileWithBuffer();
 
-			int index = BinarySearch.binarySearch(numbers, searchValue);
+			int index = BinarySearch.binarySearchRecursive(numbers, searchValue, 0, numbers.length - 1);
 
 			LocalDateTime dataFim = LocalDateTime.now();
 
@@ -97,15 +97,17 @@ public class TestePesquisaBinaria {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	/**
 	 * Exemplo usando Scanner para ler o arquivo e trabalhando com um array de longs
+	 * pesquisando recursivamente
 	 * 
 	 * @author Nikolas Luiz Schmitt
 	 *
 	 */
-	private static void binarySearchReadingWithScannerReturningArray() {
+	private static void binaryRecursiveSearchReadingWithScannerReturningArray() {
 		try {
 			System.out.println("Iniciando o Processamento com Scanner e Array");
 			System.out.println();
@@ -119,7 +121,7 @@ public class TestePesquisaBinaria {
 
 			long[] numbers = reader.readNumbersFromFile();
 
-			int index = BinarySearch.binarySearch(numbers, searchValue);
+			int index = BinarySearch.binarySearchRecursive(numbers, searchValue, 0, numbers.length - 1);
 
 			LocalDateTime dataFim = LocalDateTime.now();
 
@@ -131,6 +133,7 @@ public class TestePesquisaBinaria {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	private static void showResult(long searchValue, int index) {
