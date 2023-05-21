@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.reader.FileBufferedReaderHelper;
 import br.com.reader.FileReaderHelper;
 import br.com.reader.FileScannerReaderHelper;
-import br.com.search.BinarySearch;
+import br.com.search.BinaryInteractiveSearch;
 
 public class TestePesquisaBinaria {
 
@@ -55,7 +55,7 @@ public class TestePesquisaBinaria {
 
 			long[] numbers = reader.readNumbersFromFileReturningArray();
 
-			int index = BinarySearch.binarySearch(numbers, searchValue);
+			int index = BinaryInteractiveSearch.search(numbers, searchValue);
 
 			LocalDateTime dataFim = LocalDateTime.now();
 
@@ -90,7 +90,7 @@ public class TestePesquisaBinaria {
 
 			List<Long> numbers = reader.readNumbersFromFileReturningList();
 
-			int index = BinarySearch.binarySearch(numbers, searchValue);
+			int index = BinaryInteractiveSearch.search(numbers, searchValue);
 
 			LocalDateTime dataFim = LocalDateTime.now();
 
@@ -125,7 +125,7 @@ public class TestePesquisaBinaria {
 
 			long[] numbers = reader.readNumbersFromFileReturningArray();
 
-			int index = BinarySearch.binarySearch(numbers, searchValue);
+			int index = BinaryInteractiveSearch.search(numbers, searchValue);
 
 			LocalDateTime dataFim = LocalDateTime.now();
 
@@ -153,7 +153,7 @@ public class TestePesquisaBinaria {
 
 			List<Long> numbers = reader.readNumbersFromFileReturningList();
 
-			int index = BinarySearch.binarySearch(numbers, searchValue);
+			int index = BinaryInteractiveSearch.search(numbers, searchValue);
 
 			LocalDateTime dataFim = LocalDateTime.now();
 

@@ -25,6 +25,8 @@ public class FileScannerReaderHelper extends FileReaderHelper {
 		
 		scanner.close();
 		
+		numbers.sort(null);
+		
 		return numbers;
 	}
 
