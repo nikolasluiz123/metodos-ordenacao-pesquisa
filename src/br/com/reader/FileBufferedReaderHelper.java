@@ -3,7 +3,6 @@ package br.com.reader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FileBufferedReaderHelper extends FileReaderHelper {
@@ -23,8 +22,6 @@ public class FileBufferedReaderHelper extends FileReaderHelper {
 		}
 
 		reader.close();
-
-		numbers.sort(null);
 
 		return numbers;
 	}
@@ -50,8 +47,6 @@ public class FileBufferedReaderHelper extends FileReaderHelper {
 		}
 
 		reader.close();
-
-		Arrays.sort(numbers);
 
 		return numbers;
 	}

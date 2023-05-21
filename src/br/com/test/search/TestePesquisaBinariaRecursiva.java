@@ -1,12 +1,14 @@
-package br.com;
+package br.com.test.search;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import br.com.reader.FileBufferedReaderHelper;
 import br.com.reader.FileReaderHelper;
 import br.com.reader.FileScannerReaderHelper;
 import br.com.search.BinaryRecursiveSearch;
+import br.com.utils.DurationUtils;
 
 public class TestePesquisaBinariaRecursiva {
 
@@ -54,7 +56,8 @@ public class TestePesquisaBinariaRecursiva {
 			LocalDateTime dataInicio = LocalDateTime.now();
 
 			long[] numbers = reader.readNumbersFromFileReturningArray();
-
+			Arrays.sort(numbers);
+			
 			int index = BinaryRecursiveSearch.search(numbers, searchValue, 0, numbers.length - 1);
 
 			LocalDateTime dataFim = LocalDateTime.now();
@@ -89,7 +92,8 @@ public class TestePesquisaBinariaRecursiva {
 			LocalDateTime dataInicio = LocalDateTime.now();
 
 			List<Long> numbers = reader.readNumbersFromFileReturningList();
-
+			numbers.sort(null);
+			
 			int index = BinaryRecursiveSearch.search(numbers, searchValue, 0, numbers.size() - 1);
 
 			LocalDateTime dataFim = LocalDateTime.now();
@@ -124,7 +128,8 @@ public class TestePesquisaBinariaRecursiva {
 			LocalDateTime dataInicio = LocalDateTime.now();
 
 			List<Long> numbers = reader.readNumbersFromFileReturningList();
-
+			numbers.sort(null);
+			
 			int index = BinaryRecursiveSearch.search(numbers, searchValue, 0, numbers.size() - 1);
 
 			LocalDateTime dataFim = LocalDateTime.now();
@@ -160,7 +165,8 @@ public class TestePesquisaBinariaRecursiva {
 			LocalDateTime dataInicio = LocalDateTime.now();
 
 			long[] numbers = reader.readNumbersFromFileReturningArray();
-
+			Arrays.sort(numbers);
+			
 			int index = BinaryRecursiveSearch.search(numbers, searchValue, 0, numbers.length - 1);
 
 			LocalDateTime dataFim = LocalDateTime.now();

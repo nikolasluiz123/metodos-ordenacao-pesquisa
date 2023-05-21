@@ -1,12 +1,14 @@
-package br.com;
+package br.com.test.search;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import br.com.reader.FileBufferedReaderHelper;
 import br.com.reader.FileReaderHelper;
 import br.com.reader.FileScannerReaderHelper;
 import br.com.search.BinaryInteractiveSearch;
+import br.com.utils.DurationUtils;
 
 public class TestePesquisaBinaria {
 
@@ -54,7 +56,8 @@ public class TestePesquisaBinaria {
 			LocalDateTime dataInicio = LocalDateTime.now();
 
 			long[] numbers = reader.readNumbersFromFileReturningArray();
-
+			Arrays.sort(numbers);
+			
 			int index = BinaryInteractiveSearch.search(numbers, searchValue);
 
 			LocalDateTime dataFim = LocalDateTime.now();
@@ -89,7 +92,8 @@ public class TestePesquisaBinaria {
 			LocalDateTime dataInicio = LocalDateTime.now();
 
 			List<Long> numbers = reader.readNumbersFromFileReturningList();
-
+			numbers.sort(null);
+			
 			int index = BinaryInteractiveSearch.search(numbers, searchValue);
 
 			LocalDateTime dataFim = LocalDateTime.now();
@@ -124,6 +128,7 @@ public class TestePesquisaBinaria {
 			LocalDateTime dataInicio = LocalDateTime.now();
 
 			long[] numbers = reader.readNumbersFromFileReturningArray();
+			Arrays.sort(numbers);
 
 			int index = BinaryInteractiveSearch.search(numbers, searchValue);
 
@@ -152,7 +157,8 @@ public class TestePesquisaBinaria {
 			LocalDateTime dataInicio = LocalDateTime.now();
 
 			List<Long> numbers = reader.readNumbersFromFileReturningList();
-
+			numbers.sort(null);
+			
 			int index = BinaryInteractiveSearch.search(numbers, searchValue);
 
 			LocalDateTime dataFim = LocalDateTime.now();

@@ -1,4 +1,4 @@
-package br.com;
+package br.com.utils;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
