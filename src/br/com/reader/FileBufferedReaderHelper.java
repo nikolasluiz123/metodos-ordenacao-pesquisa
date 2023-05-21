@@ -32,27 +32,24 @@ public class FileBufferedReaderHelper extends FileReaderHelper {
 	@Override
 	public long[] readNumbersFromFileReturningArray() throws Exception {
 		long[] numbers = null;
-		BufferedReader reader1 = new BufferedReader(new FileReader(getFileName()));
+		BufferedReader reader = new BufferedReader(new FileReader(getFileName()));
 		int count = 0;
 
-		while ((reader1.readLine()) != null) {
+		while ((reader.readLine()) != null) {
 			count++;
 		}
 
 		numbers = new long[count];
 
-		reader1.close();
-
-		BufferedReader reader2 = new BufferedReader(new FileReader(getFileName()));
-		String line2;
+		String line;
 		int index = 0;
 
-		while ((line2 = reader2.readLine()) != null) {
-			numbers[index] = Long.parseLong(line2);
+		while ((line = reader.readLine()) != null) {
+			numbers[index] = Long.parseLong(line);
 			index++;
 		}
 
-		reader2.close();
+		reader.close();
 
 		Arrays.sort(numbers);
 
