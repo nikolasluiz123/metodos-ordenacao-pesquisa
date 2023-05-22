@@ -26,9 +26,10 @@ public class TesteInsertionSort {
 		
 		insertionSortWithBufferReturningArray();
 
-		System.out.println();
-		
-		insertionSortWithBufferReturningList();
+//		Preciso descobrir o motivo de estar 'travando'
+//		System.out.println();
+//		
+//		insertionSortWithBufferReturningList();
 
 		System.out.println();
 		System.out.println("Finalizado Processamento de Ordenacoes por Insercao");
