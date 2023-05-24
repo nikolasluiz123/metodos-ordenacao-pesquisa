@@ -20,7 +20,7 @@ public class TestePesquisaLinear {
 		linearSearchReadingWithScannerReturningArray();
 
 		System.out.println();
-		
+
 		linearSearchReadingWithScannerReturningList();
 
 		System.out.println();
@@ -30,9 +30,9 @@ public class TestePesquisaLinear {
 		System.out.println();
 
 		linearSearchReadingWithBufferReturningList();
-		
+
 		System.out.println();
-		
+
 		convenientSearchReadingWithBufferReturningList();
 
 		System.out.println();
@@ -61,8 +61,8 @@ public class TestePesquisaLinear {
 
 			long[] numbers = reader.readNumbersFromFileReturningArray();
 			Arrays.sort(numbers);
-			
-			boolean achou = LinearSearch.search(numbers, searchValue);
+
+			int achou = LinearSearch.search(numbers, searchValue);
 
 			LocalDateTime dataFim = LocalDateTime.now();
 
@@ -75,7 +75,7 @@ public class TestePesquisaLinear {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Exemplo usando BufferedReader para ler o arquivo e trabalhando com uma Lista
 	 * de Longs
@@ -97,12 +97,12 @@ public class TestePesquisaLinear {
 
 			List<Long> numbers = reader.readNumbersFromFileReturningList();
 			numbers.sort(null);
-			
-			boolean achou = LinearSearch.search(numbers, searchValue);
+
+			int index = LinearSearch.search(numbers, searchValue);
 
 			LocalDateTime dataFim = LocalDateTime.now();
 
-			showResult(searchValue, achou);
+			showResult(searchValue, index);
 
 			System.out.println(DurationUtils.getDurationOf(dataInicio, dataFim));
 			System.out.println();
@@ -112,7 +112,7 @@ public class TestePesquisaLinear {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Exemplo usando Scanner para ler o arquivo e trabalhando com um array de longs
 	 * 
@@ -134,11 +134,11 @@ public class TestePesquisaLinear {
 			long[] numbers = reader.readNumbersFromFileReturningArray();
 			Arrays.sort(numbers);
 
-			boolean achou = LinearSearch.search(numbers, searchValue);
+			int index = LinearSearch.search(numbers, searchValue);
 
 			LocalDateTime dataFim = LocalDateTime.now();
 
-			showResult(searchValue, achou);
+			showResult(searchValue, index);
 
 			System.out.println(DurationUtils.getDurationOf(dataInicio, dataFim));
 			System.out.println();
@@ -147,7 +147,7 @@ public class TestePesquisaLinear {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static void linearSearchReadingWithScannerReturningList() {
 		try {
 			System.out.println("Iniciando o Processamento com Scanner e List");
@@ -162,12 +162,12 @@ public class TestePesquisaLinear {
 
 			List<Long> numbers = reader.readNumbersFromFileReturningList();
 			numbers.sort(null);
-			
-			boolean achou = LinearSearch.search(numbers, searchValue);
+
+			int index = LinearSearch.search(numbers, searchValue);
 
 			LocalDateTime dataFim = LocalDateTime.now();
 
-			showResult(searchValue, achou);
+			showResult(searchValue, index);
 
 			System.out.println(DurationUtils.getDurationOf(dataInicio, dataFim));
 			System.out.println();
@@ -176,7 +176,7 @@ public class TestePesquisaLinear {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static void convenientSearchReadingWithBufferReturningList() {
 		try {
 			System.out.println("Iniciando o Processamento com BufferedReader e List com Pesquisa Pronta");
@@ -191,12 +191,12 @@ public class TestePesquisaLinear {
 
 			List<Long> numbers = reader.readNumbersFromFileReturningList();
 			numbers.sort(null);
-			
-			boolean achou = LinearSearch.searchConvenient(numbers, searchValue);
+
+			int index = LinearSearch.searchConvenient(numbers, searchValue);
 
 			LocalDateTime dataFim = LocalDateTime.now();
 
-			showResult(searchValue, achou);
+			showResult(searchValue, index);
 
 			System.out.println(DurationUtils.getDurationOf(dataInicio, dataFim));
 			System.out.println();
@@ -207,12 +207,11 @@ public class TestePesquisaLinear {
 		}
 	}
 
-	private static void showResult(long searchValue, boolean achou) {
-		if (achou) {
-			System.out.println("O valor " + searchValue + " foi encontrado.");
+	private static void showResult(long searchValue, int index) {
+		if (index != -1) {
+			System.out.println("O valor " + searchValue + " foi encontrado no indice " + index + ".");
 		} else {
 			System.out.println("O valor " + searchValue + " nao foi encontrado.");
 		}
 	}
-
 }

@@ -2,6 +2,7 @@ package br.com.reader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +16,21 @@ public class FileBufferedReaderHelper extends FileReaderHelper {
 	public List<Long> readNumbersFromFileReturningList() throws Exception {
 		List<Long> numbers = new ArrayList<>();
 
-		BufferedReader reader = new BufferedReader(new FileReader(getFileName()));
-		String line;
-		while ((line = reader.readLine()) != null) {
-			numbers.add(Long.parseLong(line));
-		}
+		String fileName = getFileName();
 
-		reader.close();
+		try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				try {
+					long number = Long.parseLong(line);
+					numbers.add(number);
+				} catch (NumberFormatException e) {
+					throw new NumberFormatException("Erro ao converter um número válido: " + e.getMessage());
+				}
+			}
+		} catch (IOException e) {
+			throw new IOException("Erro ao ler o arquivo: " + e.getMessage());
+		}
 
 		return numbers;
 	}
@@ -38,8 +47,14 @@ public class FileBufferedReaderHelper extends FileReaderHelper {
 
 		numbers = new long[count];
 
+		reader.close();
+
 		String line;
 		int index = 0;
+
+		// Por algum motivo desconhecido, para pesquisa binária com array
+		// preciso desse segundo buffered reader
+		reader = new BufferedReader(new FileReader(getFileName()));
 
 		while ((line = reader.readLine()) != null) {
 			numbers[index] = Long.parseLong(line);

@@ -1,8 +1,9 @@
 package br.com.reader;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,18 +16,27 @@ public class FileScannerReaderHelper extends FileReaderHelper {
 	@Override
 	public List<Long> readNumbersFromFileReturningList() throws Exception {
 		List<Long> numbers = new ArrayList<>();
-		
-		File file = new File(getFileName());
-		Scanner scanner = new Scanner(file);
-		
-		while (scanner.hasNextLong()) {
-			numbers.add(scanner.nextLong());
+
+		String fileName = getFileName();
+		File file = new File(fileName);
+
+		if (!file.exists()) {
+			throw new FileNotFoundException("Arquivo não encontrado: " + fileName);
 		}
-		
-		scanner.close();
-		
-		numbers.sort(null);
-		
+
+		try (Scanner scanner = new Scanner(file)) {
+			while (scanner.hasNext()) {
+				try {
+					long number = scanner.nextLong();
+					numbers.add(number);
+				} catch (InputMismatchException e) {
+					throw new InputMismatchException("Erro ao converter um número válido: " + e.getMessage());
+				}
+			}
+		} catch (FileNotFoundException e) {
+			throw new FileNotFoundException("Arquivo não pode ser lido: " + e.getMessage());
+		}
+
 		return numbers;
 	}
 
@@ -34,29 +44,33 @@ public class FileScannerReaderHelper extends FileReaderHelper {
 	public long[] readNumbersFromFileReturningArray() throws Exception {
 		long[] numbers = null;
 
-		File file = new File(getFileName());
-		Scanner scanner = new Scanner(file);
+		String fileName = getFileName();
+		File file = new File(fileName);
 
-		int count = 0;
-		while (scanner.hasNextLong()) {
-			scanner.nextLong();
-			count++;
+		if (!file.exists()) {
+			throw new FileNotFoundException("Arquivo não encontrado: " + fileName);
 		}
 
-		scanner.close();
+		int count = 0;
+		try (Scanner scanner = new Scanner(file)) {
+			while (scanner.hasNextLong()) {
+				scanner.nextLong();
+				count++;
+			}
+		} catch (FileNotFoundException e) {
+			throw new InputMismatchException("Erro ao converter um número válido: " + e.getMessage());
+		}
 
 		numbers = new long[count];
 
-		scanner = new Scanner(file);
-		for (int i = 0; i < count; i++) {
-			numbers[i] = scanner.nextLong();
+		try (Scanner scanner = new Scanner(file)) {
+			for (int i = 0; i < count; i++) {
+				numbers[i] = scanner.nextLong();
+			}
+		} catch (FileNotFoundException e) {
+			throw new FileNotFoundException("Arquivo não pode ser lido: " + e.getMessage());
 		}
-
-		scanner.close();
-
-		Arrays.sort(numbers);
 
 		return numbers;
 	}
-
 }
